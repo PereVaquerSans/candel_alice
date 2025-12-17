@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="initial-scale=1, width=device-width"/>
+<title>Candel_Alice</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: "Quicksand", sans-serif;
+}
+
+header {
+position: relative;
+height: 100vh;
+overflow: hidden;
+}
+
+header::before, header::after, header .layer-3 {
+content: "";
+position: absolute;
+inset: 0;
+background-size: cover;
+background-position: center;
+opacity: 0;
+z-index: -1;
+animation-duration: 12s;
+animation-timing-function: ease-in-out;
+animation-iteration-count: infinite;
+}
+
+header::before {
+background-image: url("fondo_header_1.png");
+animation-name: fade1;
+}
+
+header::after {
+background-image: url("fondo_header_2.png");
+animation-name: fade2;
+}
+
+header .layer-3 {
+background-image: url("fondo_header_3.png");
+animation-name: fade3;
+}
+
+@keyframes fade1 {
+  0%, 33% { opacity: 1; }
+  33%, 66% { opacity: 0; }
+  66%, 100% { opacity: 1; }
+}
+
+@keyframes fade2 {
+  0%, 33% { opacity: 0; }
+  33%, 66% { opacity: 1; }
+  66%, 100% { opacity: 0; }
+}
+
+@keyframes fade3 {
+  0%, 66% { opacity: 0; }
+  66%, 90% { opacity: 1; }
+  90%, 100% { opacity: 0; }
+}
+
+header nav ul {
+list-style: none;
+position: fixed;
+width: 100%;
+height: 50px;
+background-color: rgba(255, 255, 255, 0.5);
+display: flex;
+justify-content: space-around;
+align-items: center;
+backdrop-filter: blur(5px);
+box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+z-index: 1;
+}
+
+header nav ul li a {
+font-weight: 500;
+font-size: 1.2em;
+color: #000;
+text-decoration: none;
+transition: 300ms;
+}
+
+header nav ul li a:hover {
+text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+header .logo-title-cont {
+height: 100%;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-evenly;
+}
+
+header .logo-title-cont .logo img {
+height: 200px;
+width: 200px;
+border-radius: 50%;
+box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+header .logo-title-cont .logo h1 {
+text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.5);
+}
+
+header .logo-title-cont a .title {
+background-color: rgba(254, 100, 208, 0.75);
+border-radius: 50px;
+padding: 15px;
+backdrop-filter: blur(5px);
+box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+animation: floatY 3s ease-in-out infinite;
+}
+
+@keyframes floatY {
+	0% { transform: translateY(0px); }
+	50% { transform: translateY(-5px); }
+	100% { transform: translateY(0px); }
+}
+
+header .logo-title-cont a {
+text-decoration: none;
+}
+
+header .logo-title-cont a:hover .title {
+background-color: rgba(254, 100, 208, 1);
+text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.5);
+}
+
+header .logo-title-cont a .title h1 {
+color: #fff;
+font-size: 2em;
+}
+
+main .presentation h1 {
+margin-top: 50px;
+text-align: center;
+font-style: italic;
+}
+
+main .presentation p {
+text-align: justify;
+line-height: 1.5;
+width: 320px;
+margin: 40px auto 40px auto;
+padding: 5px;
+border-top: 1px solid #EFB810;
+border-bottom: 1px solid #EFB810;
+}
+
+main .presentation p i {
+font-weight: 600;
+}
+
+main .products h1 {
+text-align: center;
+font-style: italic;
+}
+
+main .products p {
+text-align: center;
+font-style: italic;
+margin: 20px 0px 40px 0px;
+font-weight: 500;
+}
+
+main .products .carroussel-cont {
+padding: 30px 0 30px 0;
+display: flex;
+flex-direction: column;
+gap: 60px;
+box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+main .products .carroussel-cont .receptacle-carroussel {
+width: 100%;
+display: flex;
+overflow-x: auto;
+}
+
+main .products .carroussel-cont .receptacle-carroussel::-webkit-scrollbar {
+display: none;
+}
+
+main .products .carroussel-cont .receptacle-carroussel .receptacle {
+flex: 0 0 5em;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 1em;
+animation: forwardX 15s infinite linear;
+padding-right: 1em;
+}
+
+main .products .carroussel-cont .receptacle-carroussel .receptacle div {
+margin: 5px;
+padding: 5px;
+height: 150px;
+width: 150px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-evenly;
+border-radius: 5px;
+box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+transition: 300ms;
+}
+
+main .products .carroussel-cont .receptacle-carroussel .receptacle div:hover {
+box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+main .products .carroussel-cont .receptacle-carroussel .receptacle div img {
+height: 50px;
+width: 50px;
+}
+
+main .products .carroussel-cont .fragance-carroussel {
+width: 100%;
+display: flex;
+flex-direction: row-reverse;
+overflow-x: auto;
+}
+
+main .products .carroussel-cont .fragance-carroussel::-webkit-scrollbar {
+display: none;
+}
+
+main .products .carroussel-cont .fragance-carroussel .fragance {
+flex: 0 0 5em;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 1em;
+animation: backwardsX 15s infinite linear;
+padding-right: 1em;
+}
+
+main .products .carroussel-cont .fragance-carroussel .fragance div {
+margin: 5px;
+padding: 5px;
+height: 150px;
+width: 150px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: space-evenly;
+border-radius: 5px;
+box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+transition: 300ms;
+}
+
+main .products .carroussel-cont .fragance-carroussel .fragance div:hover {
+box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+main .products .carroussel-cont .fragance-carroussel .fragance div img {
+height: 50px;
+width: 50px;
+}
+
+@keyframes forwardX {
+	from { translate: 0; }
+	to { translate: -100%; }
+}
+
+@keyframes backwardsX {
+	from { translate: 0; }
+	to { translate: 100%; }
+}
+
+main .courses h1 {
+margin-top: 50px;
+text-align: center;
+font-style: italic;
+}
+
+main .courses p {
+text-align: center;
+font-style: italic;
+margin: 20px 0px 40px 0px;
+font-weight: 500;
+}
+
+main .courses ul {
+margin: 110px 0px 100px 0px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+position: relative;
+transform: skewY(-15deg);
+}
+
+main .courses ul li {
+position: relative;
+list-style: none;
+height: 55px;
+width: 200px;
+background: #2E3133;
+padding: 15px;
+color: #fff;
+display: block;
+z-index: var(--i);
+transition: height 600ms, transform 300ms;
+cursor: pointer;
+}
+
+main .courses ul li ion-icon {
+position: absolute;
+right: 15px;
+transition: 300ms;
+}
+
+main .courses ul li p {
+margin: 15px;
+opacity: 0;
+visibility: hidden;
+transition: opacity 300ms linear 300ms;
+}
+
+main .courses ul li::before {
+content: '';
+position: absolute;
+top: 0;
+left: -40px;
+width: 40px;
+height: 100%;
+background: #2E3133;
+transform-origin: right;
+transform: skewY(45deg);
+transition: 300ms;
+}
+
+main .courses ul li::after {
+content: '';
+position: absolute;
+top: -40px;
+left: 0;
+width: 100%;
+height: 40px;
+background: #2E3133;
+transform-origin: bottom;
+transform: skewX(45deg);
+transition: 300ms;
+}
+
+main .courses ul li:hover {
+background: rgb(254, 100, 208);
+transform: translateX(50px);
+height: 200px;
+}
+
+main .courses ul li:hover p {
+opacity: 1;
+visibility: visible;
+}
+
+main .courses ul li:hover ion-icon {
+transform: rotate(90deg);
+}
+
+main .courses ul li:hover::before {
+background: rgb(200, 100, 208);
+}
+
+main .courses ul li:hover::after {
+background: rgb(230, 100, 208);
+}
+
+main .courses ul li:last-child::after {
+box-shadow: -120px 120px 20px rgba(0, 0, 0, 0.2);
+}
+
+main .courses ul li:last-child:hover::after {
+box-shadow: -320px 320px 20px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+margin-top: 200px;
+background:
+    linear-gradient(
+      rgb(255, 255, 255),
+      rgba(255, 255, 255, 0.05)
+    ),
+    url("fondo_footer.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+footer nav ul {
+list-style: none;
+height: 150px;
+display: flex;
+justify-content: space-evenly;
+align-items: center;
+}
+
+footer nav ul li {
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+footer nav ul li a {
+height: 2.5em;
+width: 2.5em;
+border-radius: 10px;
+display: flex;
+justify-content: center;
+align-items: center;
+background: #fff;
+padding: 1px;
+box-shadow: 1px 1px 5px #000;
+}
+
+footer nav ul li a ion-icon {
+height: 100%;
+width: 100%;
+color: blue;
+}
+
+footer nav ul li:first-child a {
+background: linear-gradient(#F0F, #F00);
+}
+
+footer nav ul li:first-child a ion-icon {
+color: #fff;
+}
+
+footer nav ul li:last-child a {
+background: #000;
+}
+
+footer nav ul li:last-child a ion-icon {
+color: #fff;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+	<nav>
+		<ul>
+			<li><a href="#">Tienda</a></li>
+			<li><a href="#">Productos</a></li>
+			<li><a href="#">Descúbrenos</a></li>
+			<li><a href="#">Contacto</a></li>
+		</ul>
+	</nav>
+	
+	<div class="logo-title-cont">
+
+		<div class="logo">
+			<img src="candel_alice_logo.jpg"/>
+			<h1>Candel_Alice</h1>
+		</div>
+
+		<a href="#">
+			<div class="title">
+				<h1>REALIZAR PEDIDO</h1>
+			</div>
+		</a>
+
+	</div>
+
+	<div class="layer-3"></div>
+
+</header>
+
+<main>
+
+	<section class="presentation">
+		<h1>¿Qué es Candel_Alice?</h1>
+		<p>En <i>Candel_Alice</i> nos dedicamos a la creación de velas artesanales que fusionan la calidez del hogar con el respeto por el medio ambiente. Cada vela es elaborada con cera de soja y aromas naturales que evocan sensaciones únicas, desde notas frescas y cítricas a esencias amaderadas. Nuestros envases son frascos de cristal reciclado, ofreciendo nuevas oportunidades a cada pieza y un producto consciente y sostenible.</p>
+	</section>
+
+	<section class="products">
+		<h1>¡Crea y pide tu vela ideal!</h1>
+		<p>Escoge un recipiente y la fragancia que más te guste</p>
+
+		<div class="carroussel-cont">
+
+			<div class="receptacle-carroussel">
+
+				<div class="receptacle">
+				
+					<div class="repectacle-1">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase1</h4>
+						<p>Descripción1</p>
+					</div>
+					<div class="repectacle-2">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase2</h4>
+						<p>Descripción2</p>
+					</div>
+					<div class="repectacle-3">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase3</h4>
+						<p>Descripción3</p>
+					</div>
+					<div class="repectacle-4">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase4</h4>
+						<p>Descripción4</p>
+					</div>
+					<div class="repectacle-5">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase5</h4>
+						<p>Descripción5</p>
+					</div>
+					<div class="repectacle-6">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase6</h4>
+						<p>Descripción6</p>
+					</div>
+					<div class="repectacle-7">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase7</h4>
+						<p>Descripción7</p>
+					</div>
+					<div class="repectacle-8">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase8</h4>
+						<p>Descripción8</p>
+					</div>
+
+				</div>
+
+				<div aria-hidden class="receptacle">
+				
+					<div class="repectacle-1">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase1</h4>
+						<p>Descripción1</p>
+					</div>
+					<div class="repectacle-2">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase2</h4>
+						<p>Descripción2</p>
+					</div>
+					<div class="repectacle-3">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase3</h4>
+						<p>Descripción3</p>
+					</div>
+					<div class="repectacle-4">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase4</h4>
+						<p>Descripción4</p>
+					</div>
+					<div class="repectacle-5">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase5</h4>
+						<p>Descripción5</p>
+					</div>
+					<div class="repectacle-6">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase6</h4>
+						<p>Descripción6</p>
+					</div>
+					<div class="repectacle-7">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase7</h4>
+						<p>Descripción7</p>
+					</div>
+					<div class="repectacle-8">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase8</h4>
+						<p>Descripción8</p>
+					</div>
+
+				</div>
+
+
+				<div aria-hidden class="receptacle">
+				
+					<div class="repectacle-1">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase1</h4>
+						<p>Descripción1</p>
+					</div>
+					<div class="repectacle-2">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase2</h4>
+						<p>Descripción2</p>
+					</div>
+					<div class="repectacle-3">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase3</h4>
+						<p>Descripción3</p>
+					</div>
+					<div class="repectacle-4">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase4</h4>
+						<p>Descripción4</p>
+					</div>
+					<div class="repectacle-5">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase5</h4>
+						<p>Descripción5</p>
+					</div>
+					<div class="repectacle-6">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase6</h4>
+						<p>Descripción6</p>
+					</div>
+					<div class="repectacle-7">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase7</h4>
+						<p>Descripción7</p>
+					</div>
+					<div class="repectacle-8">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Envase8</h4>
+						<p>Descripción8</p>
+					</div>
+
+				</div>
+
+
+			</div>
+			
+			<div class="fragance-carroussel">
+
+				<div class="fragance">
+
+					<div class="fragance-1">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia1</h4>
+						<p>Descripción11</p>
+					</div>
+					<div class="fragance-2">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia2</h4>
+						<p>Descripción12</p>
+					</div>
+					<div class="fragance-3">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia3</h4>
+						<p>Descripción13</p>
+					</div>
+					<div class="fragance-4">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia4</h4>
+						<p>Descripción14</p>
+					</div>
+					<div class="fragance-5">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia5</h4>
+						<p>Descripción15</p>
+					</div>
+					<div class="fragance-6">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia6</h4>
+						<p>Descripción16</p>
+					</div>
+					<div class="fragance-7">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia7</h4>
+						<p>Descripción17</p>
+					</div>
+					<div class="fragance-8">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia8</h4>
+						<p>Descripción18</p>
+					</div>
+
+				</div>
+				<div aria-hidden class="fragance">
+
+					<div class="fragance-1">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia1</h4>
+						<p>Descripción11</p>
+					</div>
+					<div class="fragance-2">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia2</h4>
+						<p>Descripción12</p>
+					</div>
+					<div class="fragance-3">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia3</h4>
+						<p>Descripción13</p>
+					</div>
+					<div class="fragance-4">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia4</h4>
+						<p>Descripción14</p>
+					</div>
+					<div class="fragance-5">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia5</h4>
+						<p>Descripción15</p>
+					</div>
+					<div class="fragance-6">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia6</h4>
+						<p>Descripción16</p>
+					</div>
+					<div class="fragance-7">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia7</h4>
+						<p>Descripción17</p>
+					</div>
+					<div class="fragance-8">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia8</h4>
+						<p>Descripción18</p>
+					</div>
+
+				</div>
+
+				<div aria-hidden class="fragance">
+
+					<div class="fragance-1">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia1</h4>
+						<p>Descripción11</p>
+					</div>
+					<div class="fragance-2">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia2</h4>
+						<p>Descripción12</p>
+					</div>
+					<div class="fragance-3">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia3</h4>
+						<p>Descripción13</p>
+					</div>
+					<div class="fragance-4">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia4</h4>
+						<p>Descripción14</p>
+					</div>
+					<div class="fragance-5">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia5</h4>
+						<p>Descripción15</p>
+					</div>
+					<div class="fragance-6">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia6</h4>
+						<p>Descripción16</p>
+					</div>
+					<div class="fragance-7">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia7</h4>
+						<p>Descripción17</p>
+					</div>
+					<div class="fragance-8">
+						<img src="candel_alice_logo.jpg" alt="">
+						<h4>Fragancia8</h4>
+						<p>Descripción18</p>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</section>
+
+	<section class="courses">
+		<h1>¿Quieres hacer tus propias velas?</h1>
+		<p>Te explicamos cada proceso</p>
+		<ul>
+			<li style="--i:5;">Materiales<ion-icon name="arrow-forward-outline"></ion-icon><p>- Cera de soja</p><p>- Mechas especiales</p><p>- Envases reciclados</p></li>
+			<li style="--i:4;">Procesado<ion-icon name="arrow-forward-outline"></ion-icon><p>- Cantidad a fundir</p><p>- Fundición de cera</p><p>- Atemperado</p></li>
+			<li style="--i:3;">Esencias<ion-icon name="arrow-forward-outline"></ion-icon><p>- Medición del aceite</p><p>- Concentración de aroma</p><p>- Vertido</p></li>
+			<li style="--i:2;">Decoración<ion-icon name="arrow-forward-outline"></ion-icon><p>- Elección y motivo</p><p>- Colocación de elementos</p><p>- Distribución</p></li>
+			<li style="--i:1;">Empaquetado<ion-icon name="arrow-forward-outline"></ion-icon><p>- Selección de paquete</p><p>- Empaquetación</p><p>- Servicio de presentación</p></li>
+		</ul>
+	</section>
+
+
+</main>
+
+<footer>
+	<nav>
+		<ul>
+			<li><a href="#"><ion-icon name="logo-instagram"></ion-icon></a></li>
+			<li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+			<li><a href="#"><ion-icon name="logo-tiktok"></ion-icon></a></li>
+		</ul>
+	</nav>
+</footer>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>
