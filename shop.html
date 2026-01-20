@@ -225,11 +225,12 @@ padding-left: 10px;
 
 main .candel-creator .candel-mod #candel-show b {
 position: absolute;
-bottom: 5;
-left: 5;
+bottom: 5px;
+left: 5px;
 }
 
 main .candel-creator .candel-mod #candel-show div b, main .candel-creator .candel-mod #candel-show div p {
+position: relative;
 font-size: 12px;
 }
 
@@ -429,7 +430,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function renderOrder(order) {
-        let html = `<div><p><b>Recipiente</b>: ${order.receptacle.name} - ${order.receptacle.price.toFixed(2)}€</p></div>`;
+        let html = `<div><b>Recipiente</b>: <p>${order.receptacle.name} - ${order.receptacle.price.toFixed(2)}€</p></div>`;
 
         html += `<div><b>Fragancias:</b>`;
         if (order.fragrances.length === 0) {
