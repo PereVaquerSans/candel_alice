@@ -430,7 +430,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function renderOrder(order) {
-        let html = `<div><b>Recipiente</b>: <p>${order.receptacle.name} - ${order.receptacle.price.toFixed(2)}€</p></div>`;
+        let html = `<div><b>Recipiente:</b><p>${order.receptacle.name} - ${order.receptacle.price.toFixed(2)}€</p></div>`;
 
         html += `<div><b>Fragancias:</b>`;
         if (order.fragrances.length === 0) {
