@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Conoce la historia de Candel_Alice — Velas artesanales de soja vertidas a mano. Nuestra filosofía, proceso artesanal y compromiso con la sostenibilidad.">
+    <meta name="keywords"
+        content="sobre Candel_Alice, historia velas artesanales, velas de soja sostenibles, artesanía velas, proceso artesanal velas">
+    <meta name="author" content="Candel_Alice">
+    <meta name="robots" content="index, follow">
+
+    <meta property="og:title" content="Nuestra Historia | Candel_Alice — Velas Artesanales de Soja">
+    <meta property="og:description"
+        content="Conoce la historia y filosofía detrás de nuestras velas artesanales de soja.">
+    <meta property="og:image" content="images/about-studio.png">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+
+    <title>Nuestra Historia | Candel_Alice — Velas Artesanales de Soja</title>
+    <link rel="icon" type="image/x-icon" href="candel_alice_logo.ico">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Navegación principal">
+        <div class="navbar__inner">
+            <a href="index.html" class="navbar__logo" aria-label="Candel_Alice — Inicio">
+                <img src="candel_alice_logo.jpg" alt="Candel_Alice Logo" width="36" height="36">
+                <span>Candel_Alice</span>
+            </a>
+            <div class="navbar__links">
+                <a href="index.html" class="navbar__link" id="nav-home">Inicio</a>
+                <a href="shop.html" class="navbar__link" id="nav-shop">Tienda</a>
+                <a href="about.html" class="navbar__link active" id="nav-about">Nosotros</a>
+                <a href="contact.html" class="navbar__link" id="nav-contact">Contacto</a>
+            </div>
+            <div class="navbar__actions" style="display:flex;align-items:center;gap:var(--space-sm);">
+                <button class="navbar__cart" id="cart-toggle" aria-label="Abrir carrito de compra">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <path d="M16 10a4 4 0 01-8 0" />
+                    </svg>
+                    <span class="cart-badge" id="cart-badge">0</span>
+                </button>
+                <button class="navbar__hamburger" id="hamburger" aria-label="Menú de navegación" aria-expanded="false">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-label="Menú móvil">
+        <a href="index.html" class="mobile-menu__link">Inicio</a>
+        <a href="shop.html" class="mobile-menu__link">Tienda</a>
+        <a href="about.html" class="mobile-menu__link">Nosotros</a>
+        <a href="contact.html" class="mobile-menu__link">Contacto</a>
+    </div>
+
+    <!-- ========== HERO ========== -->
+    <section class="hero hero--inner" id="about-hero" aria-labelledby="about-title">
+        <div class="hero__bg">
+            <img src="images/about-studio.png" alt="Taller artesanal de Candel_Alice" width="1920" height="1080">
+        </div>
+        <div class="hero__glow hero__glow--1" aria-hidden="true"></div>
+        <div class="container">
+            <div class="hero__content" style="text-align:center;max-width:800px;margin:0 auto;">
+                <p class="hero__label">Nuestra Historia</p>
+                <h1 class="hero__title" id="about-title">Crafted with <span class="text-gradient">Soul.</span></h1>
+                <p class="hero__subtitle" style="max-width:600px;margin:0 auto;">
+                    Detrás de cada llama hay una historia de pasión, sostenibilidad y arte. Conoce cómo nació
+                    Candel_Alice.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== BRAND PHILOSOPHY ========== -->
+    <section class="section" id="philosophy" aria-labelledby="philosophy-title">
+        <div class="container">
+            <div class="split-section">
+                <div class="split-section__text fade-in-up">
+                    <span class="section-label">La Esencia</span>
+                    <h2 class="section-title" id="philosophy-title">Más Que Una Vela</h2>
+                    <p class="section-subtitle mb-lg">
+                        Candel_Alice nació de una idea simple pero poderosa: los objetos cotidianos pueden ser
+                        extraordinarios. Cada vela que creamos es una invitación a detenerse, respirar y reconectar con
+                        el momento presente.
+                    </p>
+                    <p class="section-subtitle" style="color: var(--color-text-dim);">
+                        Utilizamos exclusivamente cera de soja 100% vegana, mechas de algodón orgánico certificado y
+                        aceites esenciales de grado terapéutico. Nuestros vasos son diseñados para ser reutilizados,
+                        cerrando el ciclo de sostenibilidad.
+                    </p>
+                </div>
+                <div class="split-section__image fade-in-up">
+                    <img src="images/about-ingredients.png"
+                        alt="Ingredientes naturales para velas: cera de soja, aceites esenciales, flores secas"
+                        width="600" height="450" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== OUR PROCESS ========== -->
+    <section class="section section--alt" id="process" aria-labelledby="process-title">
+        <div class="container">
+            <div class="section__header fade-in-up">
+                <span class="section-label">Nuestro Proceso</span>
+                <h2 class="section-title" id="process-title">De la Idea a la Llama</h2>
+                <div class="section__divider"></div>
+                <p class="section-subtitle mx-auto">
+                    Cada vela pasa por un proceso artesanal cuidadoso. No hay atajos, solo dedicación.
+                </p>
+            </div>
+
+            <div class="process-steps">
+                <div class="process-step fade-in-up" id="step-source">
+                    <div class="process-step__number">01</div>
+                    <h3 class="process-step__title">Seleccionar</h3>
+                    <p class="process-step__text">Seleccionamos los mejores ingredientes naturales de proveedores
+                        sostenibles certificados. Cada aceite esencial es probado para garantizar pureza y calidad.</p>
+                </div>
+                <div class="process-step fade-in-up" id="step-craft">
+                    <div class="process-step__number">02</div>
+                    <h3 class="process-step__title">Crear</h3>
+                    <p class="process-step__text">Fundimos la cera de soja a temperatura controlada y mezclamos las
+                        fragancias a mano. Cada vela se vierte individualmente en nuestros vasos exclusivos.</p>
+                </div>
+                <div class="process-step fade-in-up" id="step-deliver">
+                    <div class="process-step__number">03</div>
+                    <h3 class="process-step__title">Entregar</h3>
+                    <p class="process-step__text">Después de 48 horas de curado natural, cada vela se inspecciona, se
+                        envuelve a mano y se empaqueta en materiales reciclados y reciclables.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== STORY SECTION ========== -->
+    <section class="section" id="our-story" aria-labelledby="our-story-title">
+        <div class="container">
+            <div class="split-section">
+                <div class="split-section__image fade-in-up">
+                    <img src="images/about-studio.png" alt="Interior del taller de Candel_Alice" width="600"
+                        height="450" loading="lazy">
+                </div>
+                <div class="split-section__text fade-in-up">
+                    <span class="section-label">Desde El Taller</span>
+                    <h2 class="section-title" id="our-story-title">Un Lugar de Aroma y Alma</h2>
+                    <p class="section-subtitle mb-lg">
+                        Nuestro taller es donde la magia ocurre. Un espacio íntimo donde cada fragancia se compone como
+                        una sinfonía — nota a nota, capa a capa — hasta encontrar el equilibrio perfecto.
+                    </p>
+                    <p class="section-subtitle mb-xl" style="color: var(--color-text-dim);">
+                        Creemos en la lentitud, en el detalle, en que las cosas hechas con amor se sienten diferentes.
+                        Por eso cada vela Candel_Alice es una pieza única, vertida a mano con intención y cuidado.
+                    </p>
+                    <a href="shop.html" class="btn btn--primary" id="story-cta">Explorar Colección</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== VALUES ========== -->
+    <section class="section section--alt" id="values" aria-labelledby="values-title">
+        <div class="container">
+            <div class="section__header fade-in-up">
+                <span class="section-label">Lo Que Nos Define</span>
+                <h2 class="section-title" id="values-title">Nuestros Compromisos</h2>
+                <div class="section__divider"></div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card fade-in-up" id="value-eco">
+                    <div class="feature-card__icon" aria-hidden="true">🌍</div>
+                    <h3 class="feature-card__title">Eco-Conscientes</h3>
+                    <p class="feature-card__text">Packaging 100% reciclable, cera biodegradable y procesos de producción
+                        con mínima huella de carbono. El planeta es nuestro hogar.</p>
+                </div>
+                <div class="feature-card fade-in-up" id="value-quality">
+                    <div class="feature-card__icon" aria-hidden="true">✨</div>
+                    <h3 class="feature-card__title">Calidad Premium</h3>
+                    <p class="feature-card__text">Solo trabajamos con ingredientes de primera calidad. Cada vela pasa
+                        por controles de calidad rigurosos antes de llegar a tus manos.</p>
+                </div>
+                <div class="feature-card fade-in-up" id="value-cruelty">
+                    <div class="feature-card__icon" aria-hidden="true">🐾</div>
+                    <h3 class="feature-card__title">Cruelty-Free</h3>
+                    <p class="feature-card__text">Nuestros productos son 100% veganos y nunca son testados en animales.
+                        Belleza sin crueldad, siempre.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== NUMBERS ========== -->
+    <section class="section" id="numbers" aria-labelledby="numbers-title">
+        <div class="container text-center">
+            <div class="section__header fade-in-up">
+                <span class="section-label">En Números</span>
+                <h2 class="section-title" id="numbers-title">Nuestro Impacto</h2>
+                <div class="section__divider"></div>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card fade-in-up" id="stat-candles">
+                    <div class="feature-card__icon" aria-hidden="true" style="font-size:var(--fs-3xl);background:none;">
+                        🕯️</div>
+                    <h3 class="feature-card__title" style="font-size:var(--fs-3xl);color:var(--color-accent-light);">
+                        5,000+</h3>
+                    <p class="feature-card__text">Velas vertidas a mano desde nuestro taller</p>
+                </div>
+                <div class="feature-card fade-in-up" id="stat-customers">
+                    <div class="feature-card__icon" aria-hidden="true" style="font-size:var(--fs-3xl);background:none;">
+                        ❤️</div>
+                    <h3 class="feature-card__title" style="font-size:var(--fs-3xl);color:var(--color-accent-light);">
+                        2,500+</h3>
+                    <p class="feature-card__text">Clientes satisfechos en toda Europa</p>
+                </div>
+                <div class="feature-card fade-in-up" id="stat-scents">
+                    <div class="feature-card__icon" aria-hidden="true" style="font-size:var(--fs-3xl);background:none;">
+                        🌸</div>
+                    <h3 class="feature-card__title" style="font-size:var(--fs-3xl);color:var(--color-accent-light);">12
+                    </h3>
+                    <p class="feature-card__text">Fragancias únicas en nuestra colección</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer" id="footer" role="contentinfo">
+        <div class="container">
+            <div class="footer__grid">
+                <div class="footer__brand">
+                    <div class="footer__brand-name">
+                        <img src="candel_alice_logo.jpg" alt="Candel_Alice" width="28" height="28">
+                        Candel_Alice
+                    </div>
+                    <p class="footer__brand-text">
+                        Creando momentos de tranquilidad a través de aromas artesanales y diseño minimalista. Vertidas a
+                        mano en nuestro taller boutique.
+                    </p>
+                    <div class="footer__social">
+                        <a href="#" class="footer__social-link" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="footer__social-link" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                            </svg>
+                        </a>
+                        <a href="#" class="footer__social-link" aria-label="TikTok">
+                            <svg viewBox="0 0 24 24">
+                                <path
+                                    d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer__column-title">Tienda</h4>
+                    <nav class="footer__links" aria-label="Enlaces de la tienda">
+                        <a href="shop.html" class="footer__link">Best Sellers</a>
+                        <a href="shop.html" class="footer__link">Gift Sets</a>
+                        <a href="shop.html" class="footer__link">Nuevos Lanzamientos</a>
+                        <a href="shop.html" class="footer__link">Accesorios</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="footer__column-title">Soporte</h4>
+                    <nav class="footer__links" aria-label="Enlaces de soporte">
+                        <a href="contact.html" class="footer__link">Envíos & Devoluciones</a>
+                        <a href="contact.html" class="footer__link">Guía de Cuidado</a>
+                        <a href="contact.html" class="footer__link">Wholesale</a>
+                        <a href="contact.html" class="footer__link">Política de Privacidad</a>
+                    </nav>
+                </div>
+                <div>
+                    <h4 class="footer__column-title">Compañía</h4>
+                    <nav class="footer__links" aria-label="Enlaces de la compañía">
+                        <a href="about.html" class="footer__link">Nuestra Historia</a>
+                        <a href="about.html" class="footer__link">Sostenibilidad</a>
+                        <a href="contact.html" class="footer__link">Contacto</a>
+                    </nav>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p class="footer__copyright">© 2025 Candel_Alice. Vertidas a mano con intención.</p>
+                <div class="footer__bottom-links">
+                    <a href="#" class="footer__bottom-link">Términos</a>
+                    <a href="#" class="footer__bottom-link">Privacidad</a>
+                    <a href="#" class="footer__bottom-link">Cookies</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== CART DRAWER ========== -->
+    <div class="cart-overlay" id="cart-overlay" aria-hidden="true"></div>
+    <aside class="cart-drawer" id="cart-drawer" role="dialog" aria-label="Carrito de compra">
+        <div class="cart-drawer__header">
+            <h2 class="cart-drawer__title">Tu Carrito</h2>
+            <button class="cart-drawer__close" id="cart-close" aria-label="Cerrar carrito">✕</button>
+        </div>
+        <div class="cart-drawer__items" id="cart-items"></div>
+        <div class="cart-drawer__footer">
+            <div class="cart-drawer__total">
+                <span>Total</span>
+                <span class="cart-total-amount" id="cart-total">€0.00</span>
+            </div>
+            <button class="btn btn--primary cart-drawer__checkout" id="checkout-btn" onclick="checkoutWithStripe()">
+                Pagar con Stripe
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    aria-hidden="true">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </button>
+        </div>
+    </aside>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>
