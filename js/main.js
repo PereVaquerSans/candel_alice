@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initCart();
   initMobileMenu();
+  initCheckoutPage();
   document.body.classList.add('page-transition');
 });
 
@@ -288,33 +289,25 @@ function checkoutWithStripe() {
   const cart = getCart();
   if (cart.length === 0) return;
 
+  /* Close the cart drawer and redirect to checkout page */
+  closeCartDrawer();
+  window.location.href = 'checkout.html';
+}
+
+/* ---------- Stripe Payment (called from checkout page) ---------- */
+function proceedToStripePayment() {
   /*
    * STRIPE PAYMENT LINKS
    * =====================
-   * Each product has a Stripe Payment Link URL.
-   * Since this is a frontend-only app, we link directly
-   * to Stripe's hosted checkout page.
-   *
-   * For multiple items, Stripe Payment Links don't natively
-   * support a combined cart. There are two approaches:
-   *
-   * 1. CREATE a single Payment Link per product and redirect
-   *    the user once per item (not ideal).
-   *
-   * 2. USE Stripe's "Buy Button" embed or a single Payment Link
-   *    with adjustable quantities.
-   *
-   * For this demo, we provide a single checkout link.
    * Replace the URL below with your real Stripe Payment Link.
+   * In production, configure the link on Stripe Dashboard.
    */
-
-  showToast('Redirigiendo a la pasarela de pago segura…');
-
-  /* ⚠️ REPLACE THIS URL with your real Stripe Payment Link */
   const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/PLACEHOLDER';
 
-  /* In production, you would configure the link on Stripe Dashboard */
-  window.open(STRIPE_PAYMENT_LINK, '_blank');
+  showToast('Redirigiendo a la pasarela de pago segura…');
+  setTimeout(() => {
+    window.open(STRIPE_PAYMENT_LINK, '_blank');
+  }, 500);
 }
 
 /* ============================================================
@@ -338,6 +331,174 @@ function showToast(message) {
   toast._timeout = setTimeout(() => {
     toast.classList.remove('show');
   }, 2500);
+}
+
+/* ============================================================
+   CHECKOUT PAGE
+   ============================================================ */
+let _lastCheckoutSubmit = 0;
+
+function initCheckoutPage() {
+  const checkoutForm = document.getElementById('checkout-form');
+  if (!checkoutForm) return;
+
+  const cart = getCart();
+  const checkoutLayout = document.getElementById('checkout-layout');
+  const checkoutEmpty = document.getElementById('checkout-empty');
+
+  /* If cart is empty, show empty message */
+  if (cart.length === 0) {
+    if (checkoutLayout) checkoutLayout.style.display = 'none';
+    if (checkoutEmpty) checkoutEmpty.style.display = '';
+    return;
+  }
+
+  /* Render order summary */
+  renderCheckoutSummary(cart);
+
+  /* Real-time validation to enable/disable submit button */
+  const nameInput = document.getElementById('checkout-name');
+  const emailInput = document.getElementById('checkout-email');
+  const addressInput = document.getElementById('checkout-address');
+  const consentEmail = document.getElementById('consent-email');
+  const consentAddress = document.getElementById('consent-address');
+  const submitBtn = document.getElementById('checkout-submit');
+
+  const fields = [nameInput, emailInput, addressInput];
+  const checkboxes = [consentEmail, consentAddress];
+
+  function checkFormValidity() {
+    const allFieldsFilled = fields.every(f => f && f.value.trim().length > 0);
+    const allChecked = checkboxes.every(c => c && c.checked);
+    const emailValid = emailInput && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
+    submitBtn.disabled = !(allFieldsFilled && allChecked && emailValid);
+  }
+
+  fields.forEach(f => {
+    if (f) {
+      f.addEventListener('input', () => {
+        clearFieldError(f);
+        checkFormValidity();
+      });
+    }
+  });
+
+  checkboxes.forEach(c => {
+    if (c) {
+      c.addEventListener('change', () => {
+        checkFormValidity();
+      });
+    }
+  });
+
+  /* Form submission */
+  checkoutForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    /* Honeypot check */
+    const honeypot = document.getElementById('website');
+    if (honeypot && honeypot.value.length > 0) {
+      /* Bot detected — silently block */
+      showToast('Error al procesar el formulario.');
+      return;
+    }
+
+    /* Rate limiting (5 second cooldown) */
+    const now = Date.now();
+    if (now - _lastCheckoutSubmit < 5000) {
+      showToast('Por favor, espera unos segundos antes de reintentar.');
+      return;
+    }
+
+    /* Validate fields */
+    let valid = true;
+
+    if (!nameInput.value.trim() || nameInput.value.trim().length < 2) {
+      showFieldError(nameInput, 'error-name', 'Introduce un nombre válido (mínimo 2 caracteres).');
+      valid = false;
+    }
+
+    if (!emailInput.value.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim())) {
+      showFieldError(emailInput, 'error-email', 'Introduce un correo electrónico válido.');
+      valid = false;
+    }
+
+    if (!addressInput.value.trim() || addressInput.value.trim().length < 10) {
+      showFieldError(addressInput, 'error-address', 'Introduce una dirección completa (mínimo 10 caracteres).');
+      valid = false;
+    }
+
+    if (!consentEmail.checked) {
+      const errEl = document.getElementById('error-consent-email');
+      if (errEl) { errEl.textContent = 'Debes aceptar este consentimiento.'; errEl.classList.add('visible'); }
+      valid = false;
+    }
+
+    if (!consentAddress.checked) {
+      const errEl = document.getElementById('error-consent-address');
+      if (errEl) { errEl.textContent = 'Debes aceptar este consentimiento.'; errEl.classList.add('visible'); }
+      valid = false;
+    }
+
+    if (!valid) return;
+
+    /* Save customer data to sessionStorage */
+    _lastCheckoutSubmit = now;
+    const customerData = {
+      name: nameInput.value.trim(),
+      email: emailInput.value.trim(),
+      address: addressInput.value.trim(),
+      consentEmail: consentEmail.checked,
+      consentAddress: consentAddress.checked,
+      timestamp: new Date().toISOString()
+    };
+    sessionStorage.setItem('candel_alice_customer', JSON.stringify(customerData));
+
+    /* Proceed to Stripe */
+    proceedToStripePayment();
+  });
+}
+
+function renderCheckoutSummary(cart) {
+  const itemsContainer = document.getElementById('checkout-order-items');
+  const totalEl = document.getElementById('checkout-total');
+  if (!itemsContainer) return;
+
+  itemsContainer.innerHTML = cart.map(item => `
+    <div class="checkout-item">
+      <div class="checkout-item__image">
+        <img src="${item.image}" alt="${item.name}" width="60" height="60" loading="lazy">
+      </div>
+      <div>
+        <div class="checkout-item__name">${item.name}</div>
+        <div class="checkout-item__meta">Cantidad: ${item.qty} × €${item.price.toFixed(2)}</div>
+      </div>
+      <div class="checkout-item__subtotal">€${(item.price * item.qty).toFixed(2)}</div>
+    </div>
+  `).join('');
+
+  if (totalEl) {
+    totalEl.textContent = `€${getCartTotal().toFixed(2)}`;
+  }
+}
+
+function showFieldError(input, errorId, message) {
+  if (input) input.classList.add('invalid');
+  const errEl = document.getElementById(errorId);
+  if (errEl) {
+    errEl.textContent = message;
+    errEl.classList.add('visible');
+  }
+}
+
+function clearFieldError(input) {
+  if (input) input.classList.remove('invalid');
+  /* Find the sibling error span */
+  const errEl = input.parentElement.querySelector('.form-error');
+  if (errEl) {
+    errEl.textContent = '';
+    errEl.classList.remove('visible');
+  }
 }
 
 /* ============================================================
