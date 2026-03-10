@@ -289,8 +289,12 @@ function checkoutWithStripe() {
   const cart = getCart();
   if (cart.length === 0) return;
 
-  /* Navigate immediately — skip close animation to prevent visual shift */
-  window.location.href = 'checkout.html';
+  /* Smooth fade-out transition to checkout */
+  document.body.style.transition = 'opacity 0.35s ease';
+  document.body.style.opacity = '0';
+  setTimeout(() => {
+    window.location.href = 'checkout.html';
+  }, 350);
 }
 
 /* ---------- Stripe Payment (called from checkout page) ---------- */
@@ -329,7 +333,7 @@ function showToast(message) {
   clearTimeout(toast._timeout);
   toast._timeout = setTimeout(() => {
     toast.classList.remove('show');
-  }, 2500);
+  }, 1400);
 }
 
 /* ============================================================
