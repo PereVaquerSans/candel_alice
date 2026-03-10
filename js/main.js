@@ -16,6 +16,30 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body.classList.add('page-transition');
 });
 
+/* ---------- bfcache Restore ---------- */
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) {
+    /* Reset any inline styles left by checkoutWithStripe() */
+    document.body.style.opacity = '';
+    document.body.style.transition = '';
+    document.body.style.overflow = '';
+    document.body.style.paddingRight = '';
+
+    const navbar = document.querySelector('.navbar');
+    if (navbar) navbar.style.paddingRight = '';
+
+    /* Close cart drawer if it was left open */
+    const overlay = document.querySelector('.cart-overlay');
+    const drawer = document.querySelector('.cart-drawer');
+    if (overlay) overlay.classList.remove('open');
+    if (drawer) drawer.classList.remove('open');
+
+    /* Re-sync cart UI from localStorage */
+    updateCartBadge();
+    renderCartDrawer();
+  }
+});
+
 /* ============================================================
    NAVIGATION
    ============================================================ */
@@ -289,12 +313,12 @@ function checkoutWithStripe() {
   const cart = getCart();
   if (cart.length === 0) return;
 
-  /* Smooth fade-out transition to checkout */
-  document.body.style.transition = 'opacity 0.35s ease';
+  /* Quick fade-out then navigate */
+  document.body.style.transition = 'opacity 0.15s ease';
   document.body.style.opacity = '0';
   setTimeout(() => {
     window.location.href = 'checkout.html';
-  }, 350);
+  }, 150);
 }
 
 /* ---------- Stripe Payment (called from checkout page) ---------- */
