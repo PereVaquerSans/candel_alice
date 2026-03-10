@@ -289,8 +289,7 @@ function checkoutWithStripe() {
   const cart = getCart();
   if (cart.length === 0) return;
 
-  /* Close the cart drawer and redirect to checkout page */
-  closeCartDrawer();
+  /* Navigate immediately — skip close animation to prevent visual shift */
   window.location.href = 'checkout.html';
 }
 
@@ -359,19 +358,21 @@ function initCheckoutPage() {
   /* Real-time validation to enable/disable submit button */
   const nameInput = document.getElementById('checkout-name');
   const emailInput = document.getElementById('checkout-email');
+  const phoneInput = document.getElementById('checkout-phone');
   const addressInput = document.getElementById('checkout-address');
   const consentEmail = document.getElementById('consent-email');
   const consentAddress = document.getElementById('consent-address');
   const submitBtn = document.getElementById('checkout-submit');
 
-  const fields = [nameInput, emailInput, addressInput];
+  const fields = [nameInput, emailInput, phoneInput, addressInput];
   const checkboxes = [consentEmail, consentAddress];
 
   function checkFormValidity() {
     const allFieldsFilled = fields.every(f => f && f.value.trim().length > 0);
     const allChecked = checkboxes.every(c => c && c.checked);
     const emailValid = emailInput && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
-    submitBtn.disabled = !(allFieldsFilled && allChecked && emailValid);
+    const phoneValid = phoneInput && /^[+\d][\d\s()-]{8,19}$/.test(phoneInput.value.trim());
+    submitBtn.disabled = !(allFieldsFilled && allChecked && emailValid && phoneValid);
   }
 
   fields.forEach(f => {
@@ -423,6 +424,11 @@ function initCheckoutPage() {
       valid = false;
     }
 
+    if (!phoneInput.value.trim() || !/^[+\d][\d\s()-]{8,19}$/.test(phoneInput.value.trim())) {
+      showFieldError(phoneInput, 'error-phone', 'Introduce un número de teléfono válido (mínimo 9 dígitos).');
+      valid = false;
+    }
+
     if (!addressInput.value.trim() || addressInput.value.trim().length < 10) {
       showFieldError(addressInput, 'error-address', 'Introduce una dirección completa (mínimo 10 caracteres).');
       valid = false;
@@ -447,6 +453,7 @@ function initCheckoutPage() {
     const customerData = {
       name: nameInput.value.trim(),
       email: emailInput.value.trim(),
+      phone: phoneInput.value.trim(),
       address: addressInput.value.trim(),
       consentEmail: consentEmail.checked,
       consentAddress: consentAddress.checked,
